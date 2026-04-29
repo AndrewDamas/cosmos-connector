@@ -21,14 +21,16 @@ npm install
 
 Configuration (environment variables)
 -------------------------------------
-This project uses `dotenv`. Create a `.env` file in the project root with your Cosmos DB credentials. Example variables used by the project:
+This project uses `dotenv`. Create a `.env` or `.env.local` file in the project root with your Cosmos DB credentials. Add the following variables to your `.env.local` file (example values):
 
 ```
-COSMOS_DB_ENDPOINT=https://your-account.documents.azure.com:443/
-COSMOS_DB_KEY=your-primary-key
-COSMOS_DB_DATABASE=your-database-name
-COSMOS_DB_CONTAINER=your-container-name
+COSMOS_CONNECTION_STRING=AccountEndpoint=https://cosmos-test.documents.azure.com:443/;AccountKey=your_account_key_here;
+DATABASE_NAME=cosmos-db
+CONTAINER_NAME=container
 ```
+
+Quick adaptation note:
+You typically only need to update the connection string, database, and container values in `.env.local` (the variables above) and then edit the query or logic inside `index.js` to perform the specific read/write you want. The code reads environment values at startup, so restart the Node process after updating `.env.local`.
 
 Notes:
 - Do NOT commit your `.env` file. A `.gitignore` already exists that ignores `.env` files.
